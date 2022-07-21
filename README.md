@@ -27,7 +27,5 @@
         /register --> Therapist registration 
         /login --> Therapist login 
 
-pls keep PHP version as per composer.json 
-
-
-to receive email need fire command "php artisan queue:work" after registration done
+    pls keep PHP version as per composer.json 
+    to receive email need fire command "php artisan queue:work" after registration done
