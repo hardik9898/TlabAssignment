@@ -1,8 +1,9 @@
-#clone git repository
+    clone git repository
     copy .env.example to .env
-    - configure database user name and password on .env
-    - configure smtp details for emails
-    - migrate database and run seedar
+    configure database user name and password on .env
+    configure smtp details for emails
+    
+    migrate database and run seedar
         >> php artisan migrate
         >> php artisan db:seed
     
