@@ -1,4 +1,8 @@
     clone git repository
+    
+    install vendor directory 
+        >>composer install
+
     copy .env.example to .env
     configure database user name and password on .env
     configure smtp details for emails
@@ -7,8 +11,6 @@
         >> php artisan migrate
         >> php artisan db:seed
     
-    install vendor directory 
-        >>composer install
 
 
     for admin
