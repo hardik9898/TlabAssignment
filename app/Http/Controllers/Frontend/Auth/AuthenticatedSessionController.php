@@ -8,6 +8,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,12 +31,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        $request->ensureIsNotRateLimited();
+
+        if (! Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>'therapist'], $request->boolean('remember'))) {
+            RateLimiter::hit($request->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
+
+        RateLimiter::clear($request->throttleKey());
+
 
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
+   
 
     /**
      * Destroy an authenticated session.

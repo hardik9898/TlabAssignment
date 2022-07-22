@@ -31,3 +31,10 @@
 
     pls keep PHP version as per composer.json 
     to receive email need fire command "php artisan queue:work" after registration done
+
+    for API
+    to retrive all services
+        {APP_URL}/api/services-list 
+    store services data    
+        {APP_URL}/api/services-store?service_name=test&descriptions=fdsf
+

@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ChangePasswordController;
 use App\Http\Controllers\Backend\ServicesController;
+use App\Http\Controllers\Backend\TherapistListController;
 use App\Http\Controllers\Frontend\Auth\AuthenticatedSessionController;
 
 /*
@@ -39,10 +40,13 @@ Route::get('execute-jobs', function () {
 /*******************************************************************/
             /**** frontend */
 /*******************************************************************/
-Route::get('/', [FrontendController::class, 'index'])->name('home');
-Route::get('/get-country-ajax-data', [RegisteredUserController::class, 'getCountryAjaxData'])->name('get.country.ajax.data');
-Route::get('/get-state-ajax-data', [RegisteredUserController::class, 'getStateAjaxData'])->name('get.state.ajax.data');
-Route::get('/get-services-ajax-data', [RegisteredUserController::class, 'getServicesAjaxData'])->name('get.services.ajax.data');
+    Route::get('/get-country-ajax-data', [RegisteredUserController::class, 'getCountryAjaxData'])->name('get.country.ajax.data');
+    Route::get('/get-state-ajax-data', [RegisteredUserController::class, 'getStateAjaxData'])->name('get.state.ajax.data');
+    Route::get('/get-services-ajax-data', [RegisteredUserController::class, 'getServicesAjaxData'])->name('get.services.ajax.data');
+   
+    Route::group(['middleware' =>'auth'], function () {
+        Route::get('/', [FrontendController::class, 'index'])->name('home');
+    });
 
 require __DIR__.'/frontend_auth.php';
 
@@ -74,6 +78,10 @@ Route::group(['middleware' =>'auth:admin','prefix'=>'admin'], function () {
     /** services  */
     Route::resource('services',ServicesController::class);
     Route::get('get-datatable-of-services',[ServicesController::class,'getDatatableResponse'])->name('services.getdatatable');
+
+    /** services  */
+    Route::resource('therapist-list',TherapistListController::class);
+    Route::get('get-datatable-of-therapist-list',[TherapistListController::class,'getDatatableResponse'])->name('therapist.list.getdatatable');
 
   
 

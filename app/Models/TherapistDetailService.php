@@ -9,4 +9,13 @@ class TherapistDetailService extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+ 
+      /**
+     * relation with services
+     */
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

@@ -12,6 +12,7 @@
         <ul class="nav side-menu">
           <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
           <li><a href="{{route('services.index')}}"><i class="fa fa-gear"></i>Services</a></li>
+          <li><a href="{{route('therapist-list.index')}}"><i class="fa fa-gear"></i>Therapist List</a></li>
         </ul>
       </div>
     
