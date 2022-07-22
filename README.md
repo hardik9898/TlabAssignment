@@ -30,7 +30,9 @@
         /login --> Therapist login 
 
     pls keep PHP version as per composer.json 
-    to receive email need fire command "php artisan queue:work" after registration done
+    you can change "to email" on .env ADMIN_EMAIL for testing email
+    configure your smtp or keep as it is on .env
+    to receive email need fire command "php artisan queue:work" after registration and status change 
 
     for API
     to retrive all services
